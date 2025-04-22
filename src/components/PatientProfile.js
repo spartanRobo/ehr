@@ -19,7 +19,7 @@ const PatientProfile = ({ selectedPatient }) => {
     ...selectedPatient,
     id: "P-123456789",
     gender: "Female",
-    phone: "(555) 123-4567",
+    phone: "(555) 123-4567-1234",
     email: "jane.doe@example.com",
     address: "1234 Wellness Blvd, Healthytown, CA 90210",
     allergies: [
