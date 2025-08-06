@@ -25,6 +25,8 @@ const PatientList = () => {
     const updatedPatientList = JSON.parse(localStorage.getItem("patientList"));
     updatedPatientList.push({ ...patient, id: uuid() });
     localStorage.setItem("patientList", JSON.stringify(updatedPatientList));
+    setPatientList(updatedPatientList);
+    setSearchValue("");
   };
 
   const handleRemovePatient = (id) => {
