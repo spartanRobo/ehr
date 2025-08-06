@@ -22,20 +22,15 @@ const PatientList = () => {
   }, []);
 
   const handleAddPatient = (patient) => {
-    setPatientList((prevPatientList) => {
-      const updatedPatientList = [
-        { ...patient, id: uuid() },
-        ...prevPatientList,
-      ];
-      localStorage.setItem("patientList", JSON.stringify(updatedPatientList));
-      return updatedPatientList;
-    });
+    const updatedPatientList = JSON.parse(localStorage.getItem("patientList"));
+    updatedPatientList.push({ ...patient, id: uuid() });
+    localStorage.setItem("patientList", JSON.stringify(updatedPatientList));
   };
 
   const handleRemovePatient = (id) => {
     setPatientList((prevPatientList) => {
       const updatedPatientList = prevPatientList.filter(
-        (patient) => patient.id !== id,
+        (patient) => patient.id !== id
       );
       localStorage.setItem("patientList", JSON.stringify(updatedPatientList));
       return updatedPatientList;
@@ -47,15 +42,15 @@ const PatientList = () => {
     const listToSearch = JSON.parse(localStorage.getItem("patientList")) || [];
     setPatientList(
       listToSearch.filter((patient) =>
-        patient.name.toLowerCase().includes(value.trim().toLowerCase()),
-      ),
+        patient.name.toLowerCase().includes(value.trim().toLowerCase())
+      )
     );
   };
 
   const handleSelectPatient = (id) => {
     const childWindow = window.open(
       `${window.location.href}?id=${id}`,
-      "_blank",
+      "_blank"
     );
     childWindow.document.title = "Practice Fusion";
   };
@@ -67,7 +62,7 @@ const PatientList = () => {
           ...res,
           [`${patient.name}_${patient.dob}`]: true,
         }),
-        {},
+        {}
       );
 
       const patientsToAdd = importedPatientList
